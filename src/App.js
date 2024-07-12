@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { CssBaseline, Box, Typography, Button, Grid, Menu, MenuItem,IconButton } from '@mui/material';
+import { CssBaseline, Box, Typography, Button, Grid, Menu, MenuItem, IconButton } from '@mui/material';
 import { styled } from '@mui/system';
 import { useSpring, animated } from 'react-spring';
 import { PlayArrow, Pause } from '@mui/icons-material';
 import { Facebook, Twitter, Instagram, YouTube } from '@mui/icons-material';
-
 
 const theme = createTheme({
   palette: {
@@ -15,7 +14,6 @@ const theme = createTheme({
     secondary: {
       main: '#00ff00', // Verde lima
     },
-     
     background: {
       default: '#000000', // Negro para el fondo
     },
@@ -31,12 +29,13 @@ const NeonBox = styled(Box)(({ theme }) => ({
   boxShadow: `0 0 10px ${theme.palette.primary.main}`,
   padding: theme.spacing(2),
   borderRadius: '10px',
+  overflow: 'hidden',
 }));
 
 const PixelatedImage = styled('img')({
   imageRendering: 'pixelated',
   width: '100%',
-  height: '60%',
+  height: 'auto',
 });
 
 const GeometricBackground = styled(Box)({
@@ -110,9 +109,8 @@ function MusicPlayer() {
   };
 
   return (
-    
-    <Box container sx={{ display: 'flex', flexDirection: 'colum', mt: 2 ,justifyContent: 'center',}}>
-      <Typography color={'white'} variant="body1" sx={{ mr: 2 , flexDirection: "column" , flexWrap: "wrap" , alignContent: "center"  }}>
+    <Box container sx={{ display: 'flex', flexDirection: 'column', mt: 2, justifyContent: 'center', alignItems: 'center' }}>
+      <Typography color={'white'} variant="body1" sx={{ mr: 2 }}>
         Música de los '90
       </Typography>
       <Button onClick={togglePlay} variant="contained" color="primary">
@@ -128,7 +126,7 @@ const CassetteFooter = styled(Box)(({ theme }) => ({
   padding: theme.spacing(2),
   position: 'relative',
   backgroundImage: 'url("/Images/cassette-image.png")',
-   
+  backgroundSize: 'cover',
   backgroundPosition: 'center',
   backgroundRepeat: 'no-repeat',
   minHeight: '400px', // Ajusta según el tamaño de tu imagen
@@ -157,11 +155,11 @@ function LandingPage() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <GeometricBackground />
-      <Box sx={{ minHeight: '100vh', padding: 4, display: 'flex', flexDirection: 'column' }}>
+      <Box sx={{ minHeight: '100vh', padding: 4, display: 'flex', flexDirection: 'column', overflowX: 'hidden' }}>
         <animated.div style={bounceTitle}>
           <Typography variant="h1" align="center" gutterBottom
             sx={{ color: 'secondary.main', textShadow: '2px 2px #ff00ff' }}>
-            KIDDO <br></br>BURGERS
+            KIDDO <br />BURGER
           </Typography>
         </animated.div>
 
@@ -186,9 +184,7 @@ function LandingPage() {
                 <Typography variant="h2" gutterBottom color={'white'}>
                   Promoción del Día
                 </Typography>
-                
-                  <PixelatedImage src="/Images/burger-image.jpg" alt="Hamburguesa pixelada" />
-                
+                <PixelatedImage src="/Images/burger-image.jpg" alt="Hamburguesa pixelada" />
                 <Button variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
                   PEDIR AHORA
                 </Button>
@@ -218,14 +214,14 @@ function LandingPage() {
         <Box sx={{ flexGrow: 1 }} /> {/* Espaciador flexible */}
 
         <CassetteFooter>
-  <Typography variant="h6" align="center" marginTop={'-70px'} sx={{ color: 'primary.main', textShadow: '1px 1px 2px black' }}>
-    KIDDO BURGERS © 2024
-  </Typography>
-  <Typography variant="body2" align="center" sx={{ color: 'secondary.main', textShadow: '1px 1px 2px black' }}>
-    Revive los 90s con cada mordida
-  </Typography>
-</CassetteFooter>
-       
+          <Typography variant="h6" align="center" marginTop={'-70px'} sx={{ color: 'primary.main', textShadow: '1px 1px 2px black' }}>
+            KIDDO BURGERS © 2024
+          </Typography>
+          <Typography variant="body2" align="center" sx={{ color: 'secondary.main', textShadow: '1px 1px 2px black' }}>
+            Revive los 90s con cada mordida
+          </Typography>
+        </CassetteFooter>
+
         <MusicPlayer />
       </Box>
     </ThemeProvider>
